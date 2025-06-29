@@ -1,5 +1,7 @@
-﻿using facade.Core.Services.Booking;
+﻿using facade.Core.Models;
+using facade.Core.Services.BookingService;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Mime;
 
 namespace facade.Api.Controllers;
@@ -13,7 +15,7 @@ public class BookingController : Controller
     public BookingController(IBookingService BookingService)
     {
         _bookingService = BookingService;
-    }    
+    }
 
     [HttpPost]
     [Route("booking")]
@@ -23,11 +25,34 @@ public class BookingController : Controller
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesErrorResponseType(typeof(void))]
-    public async Task<IActionResult> PostBooking()
+    public async Task<IActionResult> PostBooking(BookingRequest request)
     {
-        // json payload Start, End, Guests[], room 
+        try
+        {
+            if (request.Start == DateTime.MinValue ||
+                request.End == DateTime.MinValue ||
+                request.Start > request.End ||
+                !request.Guests.Any() ||
+                request.Guests.Any(g => g == 0) ||
+                request.RoomId == 0)
+            {
+                return BadRequest("Booking invalid data passed in");
+            }
 
-        throw new NotImplementedException();
+            var result = await _bookingService.PostBooking(request);
+
+            if (result.IsSuccess)
+            {
+                return Ok(result.Value);
+            }
+            return UnprocessableEntity(result.StatusCode);
+
+        }
+        catch (ValidationException e)
+        {
+            return BadRequest(e.ValidationResult);
+        }
+
     }
 
     [HttpDelete]
@@ -39,8 +64,23 @@ public class BookingController : Controller
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> DeleteBooking([FromQuery] string? bookingId)
     {
-        throw new NotImplementedException();
-     }
+        try
+        {
+            if (string.IsNullOrEmpty(bookingId))
+            {
+                return BadRequest("Booking ref is required");
+            }
+
+            var result = await _bookingService.DeleteBooking(bookingId);
+
+            return Ok(result);
+
+        }
+        catch (ValidationException e)
+        {
+            return BadRequest(e.ValidationResult);
+        }
+    }
 
     [HttpGet]
     [Route("booking")]
@@ -49,9 +89,22 @@ public class BookingController : Controller
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> GetBooking([FromQuery] string? bookingId, [FromQuery] string? guestId)
+    public async Task<IActionResult> GetBooking([FromQuery] string? bookingId)
     {
-        throw new NotImplementedException();
-    }
+        try
+        {
+            if (string.IsNullOrEmpty(bookingId))
+            {
+                return BadRequest("Booking ref or guest id is required");
+            }
 
+            var result = await _bookingService.GetBooking(bookingId);
+
+            return Ok(result);
+        }
+        catch (ValidationException e)
+        {
+            return BadRequest(e.ValidationResult);
+        }
+    }
 }

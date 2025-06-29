@@ -1,12 +1,13 @@
 ﻿using facade.Core.Helpers;
+using facade.Core.Models;
 
-namespace facade.Core.Services.Booking;
+namespace facade.Core.Services.BookingService;
 
 public interface IBookingService
 {
-    Task<Result> PostBooking();
+    Task<Result<string>> PostBooking(BookingRequest request);
 
-    Task<Result> DeleteBooking(string? bookingId);
+    Task<Result<string>> DeleteBooking(string? bookingId);
 
-    Task<Result> GetBooking(string? bookingId, string? guestId);
+    Task<Result<BookingDto>> GetBooking(string? bookingId);
 }

@@ -1,5 +1,5 @@
 ﻿using facade.Core.Configs;
-using facade.Core.Services.Booking;
+using facade.Core.Services.BookingService;
 using facade.Core.Services.HotelService;
 using facade.Core.Services.Seeding;
 
