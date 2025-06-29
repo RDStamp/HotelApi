@@ -1,4 +1,5 @@
 ﻿using facade.Data.Entities.Public;
+using facade.Data.Infrustructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace facade.Data.Data;
@@ -67,5 +68,7 @@ public class BookingsDBContext : DbContext
              .WithOne(e => e.Guest)
              .HasForeignKey(e => e.GuestId)
              .IsRequired();
+
+        BookingPopulateRoomTypes.RoomTypes(modelBuilder);
     }
 }
