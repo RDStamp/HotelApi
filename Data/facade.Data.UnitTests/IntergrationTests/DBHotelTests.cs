@@ -1,75 +1,75 @@
-﻿namespace facade.Core.UnitTests.Services;
+﻿namespace facade.Data.UnitTests.IntergrationTests;
 
-public class BookingServiceTests
+public class DBHotelTests
 {
-    [Fact]
-    public void GetBookingById_WithValidId_ReturnsBooking()
+   [Fact]
+    public void GetHotelByName_WithValidName_ReturnsHotelRecord()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void GetBookingById_WithInvalidId_ReturnsNotFound()
+    public void GetHotelByName_WithInvalidName_ReturnsNoRecords()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void GetBookingById_WithNullId_ReturnsBadRequest()
+    public void GetHotelByName_WithNullName_ReturnsBadRequest()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void GetBookingById_WithEmptyId_ReturnsBadRequest()
+    public void GetHotelByName_WithEmptyName_ReturnsBadRequest()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void DeleteBookingById_WithValidId_ReturnsOkResult()
+    public void GetHotelByName_WithNonExistentName_ReturnsNotFound()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void DeleteBookingById_WithInvalidId_ReturnsNotFound()
+    public void GetAvailability_WithValidDates_ReturnsSuccessStatusHasRecords()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void DeleteBookingById_WithNullId_ReturnsBadRequest()
+    public void GetAvailability_WithInvalidStartDate_ReturnsBadRequest()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void DeleteBookingById_WithEmptyId_ReturnsBadRequest()
+    public void GetAvailability_WithInvalidEndDate_ReturnsBadRequest()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void DeleteBookingById_WithNonExistentId_ReturnsNotFound()
+    public void GetAvailability_WithNullStartDate_ReturnsBadRequest()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void CreateBooking_WithValidBooking_ReturnsCreatedBooking()
+    public void GetAvailability_WithNullEndDate_ReturnsBadRequest()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void CreateBooking_WithInvalidBooking_ReturnsBadRequest()
+    public void GetAvailability_WithEmptyStartDate_ReturnsBadRequest()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void CreateBooking_WithNullBooking_ReturnsBadRequest()
+    public void GetAvailability_WithEmptyEndDate_ReturnsBadRequest()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }

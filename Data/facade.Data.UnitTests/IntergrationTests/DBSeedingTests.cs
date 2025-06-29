@@ -1,17 +1,16 @@
 ﻿namespace facade.Data.UnitTests.IntergrationTests;
 
-public class DBTests
+public class DBSeedingTests
 {
     [Fact]
-    public void TestDatabaseConnection()
+    public void TestDatabase_InsertSeedData()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
 
     [Fact]
-    public void TestDatabaseSchema()
+    public void TestDatabase_DeleteSeedData()
     {
         throw new NotImplementedException("This test is not implemented yet.");
     }
-   
 }
