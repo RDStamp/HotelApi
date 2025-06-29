@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{0CA5FF15-7D4C-4FC2-A2C1-52A9DA421B0B}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B97929EE-9BDD-4DA7-BCDA-7032FFF60C52}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
@@ -19,8 +21,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "facade.Data", "Data\facade.Data\facade.Data.csproj", "{C5CF77E7-51BF-3A9B-B94D-3BBB76AE10D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "facade.Data.UnitTests", "Data\facade.Data.UnitTests\facade.Data.UnitTests.csproj", "{32D33E75-5ACE-42EC-D111-3125AF108298}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{0CA5FF15-7D4C-4FC2-A2C1-52A9DA421B0B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "facade.Api", "Api\facade.Api\facade.Api.csproj", "{DE50FC8C-B380-B76B-A410-0BAF61DE4EAC}"
 EndProject
