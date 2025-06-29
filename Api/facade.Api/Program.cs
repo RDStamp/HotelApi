@@ -1,9 +1,14 @@
 using facade.Api.Extensions;
+using facade.Data.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegisterComponents(builder.Configuration);
+
+builder.Services.AddDbContext<BookingsDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
 
