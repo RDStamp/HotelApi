@@ -1,5 +1,4 @@
 ﻿using facade.Data.Entities.Base;
-using facade.Data.Entities.Public;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace facade.Data.Entities.Public;

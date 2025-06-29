@@ -1,5 +1,4 @@
 ﻿using facade.Data.Entities.Base;
-using facade.Data.Entities.Public;
 
 namespace facade.Data.Entities.Public;
 public class BookingGuests : Entity
