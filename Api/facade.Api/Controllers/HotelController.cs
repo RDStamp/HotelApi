@@ -1,4 +1,5 @@
-﻿using facade.Core.Services.Hotel;
+﻿using facade.Core.Services.HotelService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -25,7 +26,17 @@ public class HotelController : Controller
     [ProducesErrorResponseType(typeof(void))]
     public async Task<IActionResult> GetHotelByName([FromQuery] string? name)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            return BadRequest("Hotel name cannot be null or empty.");
+        }
+        var result = await _HotelService.GetHotelByName(name);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+
+        return StatusCode((int)result.StatusCode, result.ErrorMessage);
     }
 
     [HttpGet]
@@ -38,6 +49,27 @@ public class HotelController : Controller
     [ProducesErrorResponseType(typeof(void))]
     public async Task<IActionResult> GetAvailable([FromQuery] string? start, [FromQuery] string? end)
     {
-        throw new NotImplementedException();
-    }   
+        if (string.IsNullOrWhiteSpace(start) || string.IsNullOrWhiteSpace(end))
+        {
+            return BadRequest("Dates cannot be null or empty.");
+        }
+
+        if (!DateTime.TryParse(end, out _))
+        {
+            return BadRequest("Date format incorrect.");
+        }
+
+        if (!DateTime.TryParse(start, out _))
+        {
+            return BadRequest("Date format incorrect.");
+        }
+
+        var result = await _HotelService.GetAvailable(start, end);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+
+        return StatusCode((int)result.StatusCode, result.ErrorMessage);
+    }
 }
