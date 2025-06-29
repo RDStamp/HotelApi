@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using facade.Data.Data;
 
@@ -11,9 +12,11 @@ using facade.Data.Data;
 namespace facade.Data.Migrations
 {
     [DbContext(typeof(BookingsDBContext))]
-    partial class BookingsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250629133556_AddedStoredProcedures")]
+    partial class AddedStoredProcedures
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
