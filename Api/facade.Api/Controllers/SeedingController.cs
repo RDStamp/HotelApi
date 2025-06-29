@@ -1,5 +1,6 @@
 ﻿using facade.Core.Services.Seeding;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Mime;
 
 namespace facade.Api.Controllers;
@@ -23,9 +24,18 @@ public class SeedingController : Controller
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesErrorResponseType(typeof(void))]
-    public async Task<IActionResult> GetSeeding([FromQuery] string? name)
+    public async Task<IActionResult> GetSeeding()
     {
-        throw new NotImplementedException();
+        try
+        {
+            var result = await _SeedingService.GetSeeding();
+
+            return Ok(result);
+        }
+        catch (ValidationException e)
+        {
+            return BadRequest(e.ValidationResult);
+        }
     }
 
     [HttpDelete]
@@ -38,6 +48,16 @@ public class SeedingController : Controller
     [ProducesErrorResponseType(typeof(void))]
     public async Task<IActionResult> DeleteSeeding()
     {
-        throw new NotImplementedException();
-    }   
+        try
+        {
+            var result = await _SeedingService.DeleteSeeding();
+
+            return Ok(result);
+        }
+        catch (ValidationException e)
+        {
+            return BadRequest(e.ValidationResult);
+        }
+
+    }
 }

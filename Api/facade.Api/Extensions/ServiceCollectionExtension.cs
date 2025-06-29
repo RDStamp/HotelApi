@@ -20,9 +20,9 @@ namespace facade.Api.Extensions
 
         private static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<IHotelService, HotelService>();
-            services.AddSingleton<IBookingService, BookingService>();
-            services.AddSingleton<ISeedingService, SeedingService>();
+            services.AddScoped<IHotelService, HotelService>();
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<ISeedingService, SeedingService>();
         }
     }
 }

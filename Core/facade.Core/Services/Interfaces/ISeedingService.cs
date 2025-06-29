@@ -4,8 +4,7 @@ namespace facade.Core.Services.Seeding;
 
 public interface ISeedingService
 {
+    Task<Result<string>> GetSeeding();
 
-    Task<Result> GetSeeding();
-
-    Task<Result> DeleteSeeding();
+    Task<Result<string>> DeleteSeeding();
 }

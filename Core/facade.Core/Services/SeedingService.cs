@@ -1,20 +1,49 @@
 ﻿using facade.Core.Helpers;
-using Microsoft.Extensions.Configuration;
+using facade.Data.Data;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+
 namespace facade.Core.Services.Seeding;
 
 public class SeedingService : ISeedingService
 {
-    public SeedingService()
+    private readonly BookingsDBContext _context;
+    public SeedingService(BookingsDBContext context)
     {
+        _context = context;
     }
 
-    public async Task<Result> GetSeeding()
+    public async Task<Result<string>> GetSeeding()
     {
-        throw new NotImplementedException();
+        try
+        {
+            using (_context)
+            {
+                var results = await _context.Database.ExecuteSqlAsync($"EXEC PopulateDbTestData");
+            }
+
+            return Result<string>.SuccessResult("Data Added");
+        }
+        catch
+        {
+            return Result<string>.FailedResult("Failed to add data", StatusCodes.Status500InternalServerError);
+        }
     }
 
-    public async Task<Result> DeleteSeeding()
+    public async Task<Result<string>> DeleteSeeding()
     {
-        throw new NotImplementedException();
+        try
+        {
+            using (_context)
+            {
+                var results = await _context.Database.ExecuteSqlAsync($"EXEC DeleteDbTestData");
+            }
+
+            return Result<string>.SuccessResult("Data Deleted");
+        }
+        catch
+        {
+            return Result<string>.FailedResult("Failed to deleted d", StatusCodes.Status500InternalServerError);
+        }
     }
 }

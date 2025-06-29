@@ -38,7 +38,12 @@ namespace facade.Data.Migrations
                     DELETE FROM [dbo].[Bookings];
                     DELETE FROM [dbo].[Rooms];
                     DELETE FROM [dbo].[Hotels];
-                    DELETE FROM [dbo].[RoomTypes];
+
+                    DBCC CHECKIDENT ('[dbo].[BookingGuests]');
+                    DBCC CHECKIDENT ('[dbo].[Guests]');
+                    DBCC CHECKIDENT ('[dbo].[Bookings]');
+                    DBCC CHECKIDENT ('[dbo].[Rooms]');
+                    DBCC CHECKIDENT ('[dbo].[Hotels]');     
                 END;
             ");
 
@@ -297,13 +302,7 @@ namespace facade.Data.Migrations
                         DELETE FROM [dbo].[Guests];
                         DELETE FROM [dbo].[Bookings];
                         DELETE FROM [dbo].[Rooms];
-                        DELETE FROM [dbo].[Hotels];
-
-                        DBCC CHECKIDENT ('[dbo].[BookingGuests]');
-                        DBCC CHECKIDENT ('[dbo].[Guests]');
-                        DBCC CHECKIDENT ('[dbo].[Bookings]');
-                        DBCC CHECKIDENT ('[dbo].[Rooms]');
-                        DBCC CHECKIDENT ('[dbo].[Hotels]');                    
+                        DELETE FROM [dbo].[Hotels];               
                     END CATCH
     
                 END;
