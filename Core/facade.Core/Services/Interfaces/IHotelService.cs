@@ -1,11 +1,12 @@
 ﻿using facade.Core.Helpers;
+using facade.Data.Entities.Public;
 
-namespace facade.Core.Services.Hotel;
+namespace facade.Core.Services.HotelService;
 
 public interface IHotelService
 {
 
-    Task<Result> GetHotelByName(string? name);
+    Task<Result<Hotel>> GetHotelByName(string? name);
 
-    Task<Result> GetAvailable(string? start, string? end);
+    Task<Result<List<Hotel>>> GetAvailable(string? start, string? end);
 }
