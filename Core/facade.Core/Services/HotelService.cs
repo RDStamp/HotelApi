@@ -3,7 +3,6 @@ using facade.Data.Data;
 using facade.Data.Entities.Public;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace facade.Core.Services.HotelService;
 

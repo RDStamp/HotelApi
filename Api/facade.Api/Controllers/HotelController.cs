@@ -1,5 +1,4 @@
 ﻿using facade.Core.Services.HotelService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
