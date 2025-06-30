@@ -17,6 +17,27 @@ public class BookingController : Controller
         _bookingService = BookingService;
     }
 
+    /// <summary>
+    /// Makes a booking with the supplied booking data
+    /// </summary>
+    /// <param name="request">JSON body containting the data to make a booking</param>
+    /// /// <remarks>
+    /// Sample request:
+    ///
+    /// POST /api/bookings/booking
+    /// {
+    ///     "start": "2025-06-30T09:11:39.359Z",
+    ///     "end": "2025-06-30T09:11:39.359Z",
+    ///     "guestIdList": [
+    ///         0
+    ///     ],  
+    ///     "roomId": 0
+    /// }
+    ///
+    /// </remarks>
+    /// <returns>
+    ///     New booking ID if successful, or an error message if the booking is invalid or fails.
+    /// </returns>
     [HttpPost]
     [Route("booking")]
     [Consumes(MediaTypeNames.Application.Json)]
@@ -32,8 +53,8 @@ public class BookingController : Controller
             if (request.Start == DateTime.MinValue ||
                 request.End == DateTime.MinValue ||
                 request.Start > request.End ||
-                !request.Guests.Any() ||
-                request.Guests.Any(g => g == 0) ||
+                !request.GuestIdList.Any() ||
+                request.GuestIdList.Any(g => g == 0) ||
                 request.RoomId == 0)
             {
                 return BadRequest("Booking invalid data passed in");
@@ -55,6 +76,14 @@ public class BookingController : Controller
 
     }
 
+    /// <summary>
+    /// Deletes a booking based on the given booking ID (Guid).
+    /// </summary>
+    /// <param name="bookingId"></param>
+    /// 
+    /// <returns>
+    ///     Returns the result of the deletion operation, which may include a success message or an error.
+    /// </returns>
     [HttpDelete]
     [Route("booking")]
     [Consumes(MediaTypeNames.Application.Json)]
@@ -82,6 +111,13 @@ public class BookingController : Controller
         }
     }
 
+    /// <summary>
+    /// Gets a booking based on the given booking ID (Guid).
+    /// </summary>
+    /// <param name="bookingId"></param>
+    /// <returns>
+    ///     Returns the booking details if found, or an error message if the booking ID is invalid or not found.
+    /// </returns>
     [HttpGet]
     [Route("booking")]
     [Consumes(MediaTypeNames.Application.Json)]
