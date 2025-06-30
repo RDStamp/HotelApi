@@ -2,7 +2,7 @@
 ## Preliminary Conclusions / Deductions / Assumptions 
 
 **Entities**   
- - Should use GUIDS for external Id’s
+ - Should use GUIDS for external Id’s ??? Discuss the validity & issues related to this
  - Hotel => Id, Address, Postcode, Name, Telephone Number & Email
  - Guest => Id, Name, Surname, Telephone Number & Email
  - Room =>  Id, Capacity, Hotel Id, Room Number, Type Id
