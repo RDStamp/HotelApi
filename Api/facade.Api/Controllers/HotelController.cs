@@ -1,4 +1,5 @@
 ﻿using facade.Core.Services.HotelService;
+using facade.Data.Entities.Public;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -25,12 +26,11 @@ public class HotelController : Controller
     /// </returns>
     [HttpGet]
     [Route("name")]
-    [Consumes(MediaTypeNames.Application.Json)]
-    [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Hotel), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesErrorResponseType(typeof(void))]
+    [Consumes(MediaTypeNames.Application.Json)]
+    [Produces(MediaTypeNames.Application.Json)]
     public async Task<IActionResult> GetHotelByName([FromQuery] string? name)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -57,12 +57,11 @@ public class HotelController : Controller
     /// </returns>
     [HttpGet]
     [Route("available")]
-    [Consumes(MediaTypeNames.Application.Json)]
-    [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(List<Hotel>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesErrorResponseType(typeof(void))]
+    [Consumes(MediaTypeNames.Application.Json)]
+    [Produces(MediaTypeNames.Application.Json)]
     public async Task<IActionResult> GetAvailable([FromQuery] string? start, [FromQuery] string? end)
     {
         if (string.IsNullOrWhiteSpace(start) || string.IsNullOrWhiteSpace(end))
