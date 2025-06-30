@@ -22,7 +22,7 @@ public class BookingService : IBookingService
             var room = await _context.Rooms
             .FirstOrDefaultAsync(r => r.Id == request.RoomId);
 
-            if (room == null || room.Capacity < request.Guests.Count())
+            if (room == null || room.Capacity < request.GuestIdList.Count())
             {
                 return Result<string>.FailedResult("Failed to add booking, occupancy limit exceeded", StatusCodes.Status400BadRequest);
             }
@@ -40,7 +40,7 @@ public class BookingService : IBookingService
             await _context.SaveChangesAsync();
 
             var bookingGuests = new List<BookingGuests>();
-            foreach (var guest in request.Guests)
+            foreach (var guest in request.GuestIdList)
             {
                 var newEnrty = new BookingGuests
                 {
@@ -144,7 +144,7 @@ public class BookingService : IBookingService
                     {
                         FullName = guest.FullName,
                         Surname = guest.Surname,
-                        Tel_No = guest.Tel_No,
+                        PhoneNumber = guest.Tel_No,
                         Email = guest.Email
                     });
                 }
@@ -157,7 +157,7 @@ public class BookingService : IBookingService
                         FullName = currentRooms.hotel.FullName,
                         Address = currentRooms.hotel.Address,
                         Postcode = currentRooms.hotel.Postcode,
-                        Tel_No = currentRooms.hotel.Tel_No,
+                        PhoneNumber = currentRooms.hotel.Tel_No,
                         Email = currentRooms.hotel.Email
                     },
                     Room = new DtoRoom
@@ -170,7 +170,7 @@ public class BookingService : IBookingService
                     Start = currentBookings.First().booking.StartDate,
                     End = currentBookings.First().booking.EndDate,
 
-                    Guests = guestList
+                    GuestList = guestList
                 };
 
                 if (!currentBookings.Any())

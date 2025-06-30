@@ -16,6 +16,13 @@ public class SeedingController : Controller
         _SeedingService = SeedingService;
     }
 
+    /// <summary>
+    /// Seeds the DB with initial data, contained in the SP dedicated for this task
+    /// </summary>
+    /// 
+    /// <returns>
+    ///     Returns a string indicating the seeding status, or an error message if the seeding fails.
+    /// </returns>
     [HttpPut]
     [Route("seeding")]
     [Consumes(MediaTypeNames.Application.Json)]
@@ -38,6 +45,13 @@ public class SeedingController : Controller
         }
     }
 
+    /// <summary>
+    /// Deletes Seeding data from the DB, contained in the SP dedicated for this task
+    /// </summary>
+    /// 
+    /// <returns>
+    ///     Returns a string indicating the deletion status, or an error message if the deletion fails.
+    /// </returns>
     [HttpDelete]
     [Route("seeding")]
     [Consumes(MediaTypeNames.Application.Json)]

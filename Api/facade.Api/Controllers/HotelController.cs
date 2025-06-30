@@ -15,6 +15,14 @@ public class HotelController : Controller
         _HotelService = HotelService;
     }
 
+    /// <summary>
+    /// Gets a hotel by its full name, must be the full name no wild searches
+    /// </summary>
+    /// <param name="name"></param>
+    /// 
+    /// <returns>
+    ///     Returns a hotel object if found, or a bad request if the name is null or empty.
+    /// </returns>
     [HttpGet]
     [Route("name")]
     [Consumes(MediaTypeNames.Application.Json)]
@@ -38,6 +46,15 @@ public class HotelController : Controller
         return StatusCode((int)result.StatusCode, result.ErrorMessage);
     }
 
+    /// <summary>
+    /// Gets the hotels that have availability for the given date range.
+    /// </summary>
+    /// <param name="start">Start date, string parameter must be a valid date format</param>
+    /// <param name="end">End Date, string parameter must be a valid date format</param>
+    /// 
+    /// <returns>
+    ///     Returns a list of hotels that have availability for the given date range.
+    /// </returns>
     [HttpGet]
     [Route("available")]
     [Consumes(MediaTypeNames.Application.Json)]

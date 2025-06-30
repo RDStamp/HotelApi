@@ -12,7 +12,7 @@ public class BookingDto
 
     public required Guid RefId { get; set; }
 
-    public List<DtoGuest> Guests { get; set; } = new List<DtoGuest>();
+    public List<DtoGuest> GuestList { get; set; } = new List<DtoGuest>();
 }
 
 public class DtoHotel
@@ -23,7 +23,7 @@ public class DtoHotel
 
     public string Postcode { get; set; } = null!;
 
-    public string Tel_No { get; set; } = null!;
+    public string PhoneNumber { get; set; } = null!;
 
     public string Email { get; set; } = null!;
 }
@@ -44,7 +44,7 @@ public class DtoGuest
 {
     public required string FullName { get; set; } = null!;
     public required string Surname { get; set; } = null!;
-    public string Tel_No { get; set; } = null!;
+    public string PhoneNumber { get; set; } = null!;
     public required string Email { get; set; } = null!;
 
 }
