@@ -7,14 +7,9 @@ namespace facade.Api.Controllers;
 
 [ApiController]
 [Route("api/hotels")]
-public class HotelController : Controller
+public class HotelController(IHotelService HotelService) : Controller
 {
-    private readonly IHotelService _HotelService;
-
-    public HotelController(IHotelService HotelService)
-    {
-        _HotelService = HotelService;
-    }
+    private readonly IHotelService _HotelService = HotelService;
 
     /// <summary>
     /// Gets a hotel by its full name, must be the full name no wild searches
@@ -37,7 +32,9 @@ public class HotelController : Controller
         {
             return BadRequest("Hotel name cannot be null or empty.");
         }
+
         var result = await _HotelService.GetHotelByName(name);
+
         if (result.IsSuccess)
         {
             return Ok(result);
@@ -80,6 +77,7 @@ public class HotelController : Controller
         }
 
         var result = await _HotelService.GetAvailable(start, end);
+
         if (result.IsSuccess)
         {
             return Ok(result);

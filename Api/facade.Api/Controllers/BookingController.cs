@@ -9,14 +9,9 @@ namespace facade.Api.Controllers;
 
 [ApiController]
 [Route("api/bookings")]
-public class BookingController : Controller
+public class BookingController(IBookingService BookingService) : Controller
 {
-    private readonly IBookingService _bookingService;
-
-    public BookingController(IBookingService BookingService)
-    {
-        _bookingService = BookingService;
-    }
+    private readonly IBookingService _bookingService = BookingService;
 
     /// <summary>
     /// Makes a booking with the supplied booking data
@@ -53,7 +48,7 @@ public class BookingController : Controller
             if (request.Start == DateTime.MinValue ||
                 request.End == DateTime.MinValue ||
                 request.Start > request.End ||
-                !request.GuestIdList.Any() ||
+                request.GuestIdList.Count == 0 ||
                 request.GuestIdList.Any(g => g == 0) ||
                 request.RoomId == 0)
             {

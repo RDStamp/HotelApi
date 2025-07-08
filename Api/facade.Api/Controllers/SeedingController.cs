@@ -7,14 +7,9 @@ namespace facade.Api.Controllers;
 
 [ApiController]
 [Route("api/seeding")]
-public class SeedingController : Controller
+public class SeedingController(ISeedingService SeedingService) : Controller
 {
-    private readonly ISeedingService _SeedingService;
-
-    public SeedingController(ISeedingService SeedingService)
-    {
-        _SeedingService = SeedingService;
-    }
+    private readonly ISeedingService _SeedingService = SeedingService;
 
     /// <summary>
     /// Seeds the DB with initial data, contained in the SP dedicated for this task
