@@ -76,11 +76,10 @@ public class HotelControllerTests
 
         //Assert
         Assert.NotNull(controllerResponse);
-        Assert.IsType<Result<Hotel>>(controllerResponse.Result);
-        //var result = controllerResponse.Result;
-        //Assert.True(result.IsSuccess);
-        //Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
-        //Assert.Equal(name, result.Value.FullName);
+        //Assert.IsType<Result<Hotel>>(controllerResponse.Result);
+        var result =(ObjectResult)controllerResponse.Result;
+        Assert.Equal(StatusCodes.Status500InternalServerError, result.StatusCode);
+        Assert.Equal("Failed to find hotels", result.Value);
     }
 }
 

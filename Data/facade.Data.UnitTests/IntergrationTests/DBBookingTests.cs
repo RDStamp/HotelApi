@@ -1,11 +1,13 @@
-﻿namespace facade.Data.UnitTests.IntergrationTests;
+﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
+
+namespace facade.Data.UnitTests.IntergrationTests;
 
 public class DBBookingTests
 {
-     [Fact]
+     [Fact]    
     public void TestDatabase_InsertBooking_WithValidData()
     {
-        throw new NotImplementedException("This test is not implemented yet.");
+        throw new NotImplementedException("This test is not implemented yet.");        
     }
 
     [Fact]
